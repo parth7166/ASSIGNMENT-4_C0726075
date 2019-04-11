@@ -17,36 +17,47 @@ namespace assignment_4_c0726075
             Program p = new Program();
             p.Beowulf = new ArrayList();
             p.Run();
-
+            p.ProcessArrayList();
         }
 
         public void Run()
         {
             this.ReadTextFiles();
-            this.ProcessArrayList();
         }
 
         public void ProcessArrayList()
         {
+            int LineNum = 0;
+            foreach (var line in Beowulf)
+            {
+                if (ContainsWord(line.ToString().ToLower(), "fare") && (ContainsWord(line.ToString().ToLower(), "sea")))
+                {
+                    Console.WriteLine("Line is: {0}", LineNum);
+                    LineNum++;
+                }
+            }
+
+
             int LineNumber = 0;
 
             foreach (var line in Beowulf)
             {
-                LineNumber++;
-                Console.WriteLine(line);
-                if (ContainsWord(line.ToString(), "sea")&& ContainsWord(line.ToString(), "Fare"))
+                if (ContainsWord(line.ToString().ToLower(), "fare") && !(ContainsWord(line.ToString().ToLower(), "war")))
                 {
                     Console.WriteLine("Line number is: {0}", LineNumber);
+                    LineNumber++;
                 }
             }
+
+            
         }
 
         public bool ContainsWord(string line, string word)
         {
             //TODO: write are algorithm to detect if a line contains a word
-            if(line.Contains("sea") == true)
+            if(line.Contains(word) == true)
             {
-
+                return true;
             }
             return false;
         }
@@ -56,7 +67,6 @@ namespace assignment_4_c0726075
             //Read file using StreamReader. Reads file line by line
             using (StreamReader file = new StreamReader("U:/Users/725030/Beowulf.txt"))
             {
-                //int words = 1;
                 int counter = 0;
                 string ln;
 
@@ -67,23 +77,11 @@ namespace assignment_4_c0726075
                     counter++;
                 }
 
-                //while (counter <= ln.Length - 1)
-                //{
-                //    if (ln[counter] == ' ' || ln[counter] == '\n' || ln[counter] == '\t')
-                //    {
-                //        words++;
-                //    }
-                //    counter++;
-                //}
                 file.Close();
                 Console.WriteLine($"File has {counter} lines.");
-                //Console.WriteLine("Number of words in the string: {0}", words);  
-                Console.WriteLine();
             }
 
         }
-
-
 
         public int FindNumberOfBlankSpaces(string line)
         {
@@ -103,7 +101,6 @@ namespace assignment_4_c0726075
                 }
             }
             return countSpaces;
-            
         }
     }
 }
