@@ -103,6 +103,7 @@ namespace assignment_4_c0726075
                 }
             }
             return countSpaces;
+            
         }
     }
 }
